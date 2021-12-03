@@ -38,7 +38,7 @@ class NoteAdapter(
         holder.alarmButton.setOnClickListener {
             setAlarmInterface.onAlarmButtonClick(allNotes[position])
         }
-        holder.deleteButton.setOnClickListener{
+        holder.deleteButton.setOnClickListener {
             deleteInterface.onDeleteButtonClick(allNotes[position])
         }
     }
