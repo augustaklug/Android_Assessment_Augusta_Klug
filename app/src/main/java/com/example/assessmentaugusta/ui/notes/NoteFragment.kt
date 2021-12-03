@@ -1,5 +1,6 @@
 package com.example.assessmentaugusta.ui.notes
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.provider.AlarmClock
@@ -10,8 +11,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,7 +34,7 @@ class NoteFragment : Fragment(), NoteAdapter.SetAlarmInterface, NoteAdapter.Dele
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentNoteBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -44,7 +43,7 @@ class NoteFragment : Fragment(), NoteAdapter.SetAlarmInterface, NoteAdapter.Dele
         recyclerView!!.layoutManager = LinearLayoutManager(container.context)
         recyclerView!!.adapter = recyclerViewAdapter
 
-        noteViewModel.notes.observe(viewLifecycleOwner, Observer { list ->
+        noteViewModel.notes.observe(viewLifecycleOwner, { list ->
             list?.let {
                 recyclerViewAdapter?.updateList(list)
             }
@@ -57,7 +56,7 @@ class NoteFragment : Fragment(), NoteAdapter.SetAlarmInterface, NoteAdapter.Dele
 
         val textView: TextView = binding.textHome
 
-        noteViewModel.text.observe(viewLifecycleOwner, Observer {
+        noteViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
 
@@ -70,6 +69,7 @@ class NoteFragment : Fragment(), NoteAdapter.SetAlarmInterface, NoteAdapter.Dele
         _binding = null
     }
 
+    @SuppressLint("QueryPermissionsNeeded")
     override fun onAlarmButtonClick(note: Note) {
         val intent = Intent(AlarmClock.ACTION_SET_ALARM).apply {
             putExtra(AlarmClock.EXTRA_MESSAGE, note.title)
@@ -80,10 +80,14 @@ class NoteFragment : Fragment(), NoteAdapter.SetAlarmInterface, NoteAdapter.Dele
     }
 
     override fun onDeleteButtonClick(note: Note) {
-        var editedList = noteViewModel.notes.getValue()!!.toMutableList()
+        val editedList = noteViewModel.notes.value!!.toMutableList()
         editedList.remove(note)
-        noteViewModel.editList(editedList!!)
-        Toast.makeText(getActivity(), "A anotação \"${note.title}\" foi excluída", Toast.LENGTH_SHORT).show()
+        noteViewModel.editList(editedList)
+        Toast.makeText(
+            activity,
+            "A anotação \"${note.title}\" foi excluída",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }
 
