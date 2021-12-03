@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal|top"
+    android:layout_margin="16sp"
+    android:orientation="vertical"
+    tools:context=".ui.notes.AddNoteFragment">
+
+    <TextView
+        android:id="@+id/txtAddNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8sp"
+        android:layout_marginBottom="16sp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center_horizontal"
+        android:text="@string/new_note"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTextNoteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8sp"
+        android:layout_marginBottom="8sp"
+        android:autofillHints="título"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:hint="@string/hint_titulo"
+        android:inputType="textLongMessage|text"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/editTextNoteDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8sp"
+        android:layout_marginBottom="8sp"
+        android:autofillHints="Descrição"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:hint="@string/descricao"
+        android:inputType="textLongMessage"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/buttonNoteSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16sp"
+        android:layout_marginBottom="8sp"
+        android:fontFamily="sans-serif"
+        android:text="@string/submit_button_text" />
+
+</LinearLayout>

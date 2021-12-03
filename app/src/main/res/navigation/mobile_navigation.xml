@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/noteFragment">
+    <fragment
+        android:id="@+id/noteFragment"
+        android:name="com.example.assessmentaugusta.ui.notes.NoteFragment"
+        android:label="Anotações"
+        tools:layout="@layout/fragment_note">
+        <action
+            android:id="@+id/action_noteFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.example.assessmentaugusta.ui.notes.AddNoteFragment"
+        android:label="Adicionar anotação"
+        tools:layout="@layout/fragment_add_note" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.assessmentaugusta.ui.about.AboutFragment"
+        android:label="Sobre"
+        tools:layout="@layout/fragment_about" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.assessmentaugusta.MainActivity"
+        android:label="app_bar_main"
+        tools:layout="@layout/app_bar_main" />
+</navigation>
